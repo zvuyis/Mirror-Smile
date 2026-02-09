@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>MirrorFace</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MirrorFace">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0c10">
+
     <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation"></script>
     <style>
@@ -17,9 +25,8 @@
         canvas { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%; object-fit: contain; display: none; }
         video { display: none; }
 
-        /* כפתור החלפת שפה */
         #lang-toggle {
-            position: absolute; top: 20px; left: 20px; z-index: 500;
+            position: absolute; top: 40px; left: 20px; z-index: 500;
             background: rgba(255,255,255,0.1); border: 1px solid var(--accent);
             color: var(--accent); padding: 8px 15px; border-radius: 20px;
             cursor: pointer; font-size: 14px; font-weight: bold;
@@ -57,6 +64,7 @@
         button.tool-btn { padding: 10px 14px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; font-size: 14px; }
         button.active { background: var(--accent); color: #000; }
         button.recording { background: var(--record); color: #fff; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
         #slider-container { width: 90%; max-width: 320px; background: rgba(0,0,0,0.4); padding: 12px 20px; border-radius: 20px; }
         input[type=range] { width: 100%; accent-color: var(--accent); }
@@ -88,9 +96,8 @@
             <h2 data-i18n="about_title">אודות MirrorFace</h2>
             <div class="info-text" data-i18n="about_content">
                 <p><strong>MirrorFace</strong> נולדה מתוך עקרון הנוירופלסטיות — יכולתו של המוח להשתנות, להסתגל ולהחלים בעקבות אימון, חזרה ומשוב מתאים.</p>
-                <p>עיקרון זה מתואר בהרחבה בספר „המוח הגמיש” (The Brain That Changes Itself) מאת נורמן דוידג’, המדגים כיצד תהליכי אימון מכוונים יכולים להשפיע על תפקוד מוחי ושיקומי. בפרק 7 בספר מתוארת בין השאר תרומתו של פרופ’ רמאצ’נדרן לשדה זה.</p>
-                <p>האפליקציה מבוססת על עקרונות Mirror Therapy — שיטה שיקומית המשתמשת במשוב חזותי כדי לעודד הפעלה מוחית ותנועתית.</p>
-                <p>השיטה פותחה על‑ידי הנוירולוג <strong>Vilayanur S. Ramachandran</strong>, תחילה לטיפול בכאבי פנטום ובהמשך יושמה גם בשיקום מוטורי ונוירולוגי, כולל שיתוקי פנים.</p>
+                <p>עיקרון זה מתואר בהרחבה בספר „המוח הגמיש” (The Brain That Changes Itself) מאת נורמן דוידג’.</p>
+                <p>האפליקציה מבוססת על עקרונות Mirror Therapy שפותחה על‑ידי הנוירולוג <strong>Vilayanur S. Ramachandran</strong>.</p>
             </div>
             <div class="btn-group">
                 <button class="secondary-btn" onclick="openModal('usersModal')" data-i18n="btn_call_users">קריאה למשתמשים</button>
@@ -111,7 +118,7 @@
                 <li>תרגל בעזרת שתי הידיים במקביל, בהתאם להנחיות המטפל שלך</li>
             </ul>
             <div class="info-text instruction-goal" data-i18n="instr_goal">
-                מטרת התרגול היא לאפשר למוח „להשתכנע” שהתנועה אפשרית, בטוחה ותקינה — ולתמוך בתהליך הלמידה‑מחדש.
+                מטרת התרגול היא לאפשר למוח „להשתכנע” שהתנועה אפשרית, בטוחה ותקינה.
             </div>
             <button class="main-btn" onclick="showScreen(4)" data-i18n="btn_to_disclaimer">המשך לאחריות שימוש</button>
         </div>
@@ -152,11 +159,10 @@
     </div>
     <div class="watermark">© 2026 | MirrorFace | Developed by Dekel Tzidon & Yishay Zvulun</div>
 
-    <div id="usersModal" class="modal"><div class="modal-content"><h3 data-i18n="modal_users_title">קריאה למשתמשים</h3><p data-i18n="modal_users_body">אנו מזמינים אנשים הסובלים משיתוק עצב הפנים להשתמש ב‑MirrorFace כחלק מתהליך ההחלמה. נשמח לקבל משוב והצעות לשיפור.</p><button class="close-modal" onclick="closeModal('usersModal')" data-i18n="btn_close">סגור</button></div></div>
-    <div id="researchModal" class="modal"><div class="modal-content"><h3 data-i18n="modal_res_title">קריאה לחוקרים</h3><p data-i18n="modal_res_body">חוקרים מוזמנים להשתמש באפליקציה למחקר. תנאי יחיד: רפרנס ברור לדקל צידון, ישי זבולון ו-MirrorFace.</p><button class="close-modal" onclick="closeModal('researchModal')" data-i18n="btn_close">סגור</button></div></div>
+    <div id="usersModal" class="modal"><div class="modal-content"><h3 data-i18n="modal_users_title">קריאה למשתמשים</h3><p data-i18n="modal_users_body">אנו מזמינים אנשים הסובלים משיתוק עצב הפנים להשתמש ב-MirrorFace. נשמח למשוב.</p><button class="close-modal" onclick="closeModal('usersModal')" data-i18n="btn_close">סגור</button></div></div>
+    <div id="researchModal" class="modal"><div class="modal-content"><h3 data-i18n="modal_res_title">קריאה לחוקרים</h3><p data-i18n="modal_res_body">חוקרים מוזמנים להשתמש באפליקציה למחקר עם קרדיט מתאים.</p><button class="close-modal" onclick="closeModal('researchModal')" data-i18n="btn_close">סגור</button></div></div>
 
     <script>
-        // מילון תרגומים
         const i18n = {
             he: {
                 dir: 'rtl', lang_btn: 'English',
@@ -203,20 +209,13 @@
         function toggleLanguage() {
             currentLang = (currentLang === 'he') ? 'en' : 'he';
             const langData = i18n[currentLang];
-            
-            // עדכון כיווניות ושפה
             document.getElementById('mainHtml').dir = langData.dir;
             document.getElementById('lang-toggle').innerText = langData.lang_btn;
-
-            // עדכון כל האלמנטים עם ה-attribute data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (langData[key]) {
-                    if (el.tagName === 'UL' || el.tagName === 'DIV' || el.tagName === 'P') {
-                        el.innerHTML = langData[key];
-                    } else {
-                        el.innerText = langData[key];
-                    }
+                    if (['UL','DIV','P'].includes(el.tagName)) el.innerHTML = langData[key];
+                    else el.innerText = langData[key];
                 }
             });
         }
@@ -252,14 +251,9 @@
                 selfieSegmentation = new SelfieSegmentation({locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`});
                 selfieSegmentation.setOptions({ modelSelection: 1 });
                 selfieSegmentation.onResults(onResults);
-                
                 streamRef = await navigator.mediaDevices.getUserMedia({ 
                     video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } } 
-                }).catch(err => {
-                    alert(i18n[currentLang].cam_err);
-                    throw err;
-                });
-
+                }).catch(err => { alert(i18n[currentLang].cam_err); throw err; });
                 video.srcObject = streamRef;
                 video.onloadedmetadata = () => { canvas.width = tempCanvas.width = video.videoWidth; canvas.height = tempCanvas.height = video.videoHeight; smoothNoseX = canvas.width/2; sendToSegmentation(); };
             } catch (e) { finishSession(); }

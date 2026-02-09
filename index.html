@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MirrorFace</title>
+    <title>Mirror-Smile</title>
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="MirrorFace">
+    <meta name="apple-mobile-web-app-title" content="Mirror-Smile">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0a0c10">
@@ -26,10 +26,10 @@
         video { display: none; }
 
         #lang-toggle {
-            position: absolute; top: 40px; left: 20px; z-index: 500;
-            background: rgba(255,255,255,0.1); border: 1px solid var(--accent);
-            color: var(--accent); padding: 8px 15px; border-radius: 20px;
-            cursor: pointer; font-size: 14px; font-weight: bold;
+            position: absolute; top: 50px; left: 20px; z-index: 500;
+            background: rgba(255,255,255,0.15); border: 1.5px solid var(--accent);
+            color: var(--accent); padding: 10px 18px; border-radius: 25px;
+            cursor: pointer; font-size: 14px; font-weight: bold; backdrop-filter: blur(5px);
         }
 
         .content-card { 
@@ -40,39 +40,46 @@
         }
         .content-card::-webkit-scrollbar { display: none; }
         
-        #app-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 50%; border: 1px solid var(--accent); background: #fff; object-fit: contain; padding: 5px; }
+        #app-logo { 
+            width: 110px; height: 110px; 
+            margin-bottom: 20px; 
+            border-radius: 22px; 
+            border: 2.5px solid var(--accent); 
+            background: #ffffff; 
+            object-fit: contain; 
+            padding: 8px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            opacity: 1 !important;
+        }
+
         h1 { font-size: 28px; margin: 0 0 5px 0; color: #fff; }
-        .sub-title { font-size: 14px; color: var(--accent); margin-bottom: 20px; opacity: 0.9; line-height: 1.4; }
+        .sub-title { font-size: 14px; color: var(--accent); margin-bottom: 25px; opacity: 1; font-weight: 500; }
         h2 { font-size: 19px; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid rgba(78, 186, 186, 0.3); padding-bottom: 8px; }
         
         .info-text { text-align: inherit; font-size: 13.5px; line-height: 1.6; margin-bottom: 20px; color: #f0f0f0; }
         .instructions-list { text-align: inherit; margin: 15px 0; padding: 0; list-style: none; width: 100%; }
         .instructions-list li { margin-bottom: 12px; font-size: 13px; line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
         .instructions-list li::before { content: "•"; color: var(--accent); font-weight: bold; flex-shrink: 0; margin-top: 2px; }
-        .instruction-goal { font-size: 12.5px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-style: italic; opacity: 0.9; }
-
-        .btn-group { display: flex; flex-direction: column; gap: 10px; width: 100%; align-items: center; }
-        .main-btn { width: 100%; max-width: 260px; padding: 12px; border-radius: 30px; background: var(--accent); color: #000; font-size: 16px; font-weight: 600; border: none; cursor: pointer; transition: 0.2s; }
-        .secondary-btn { width: 100%; max-width: 260px; padding: 10px; border-radius: 30px; background: transparent; color: var(--accent); font-size: 14px; border: 1px solid var(--accent); cursor: pointer; }
         
-        .disclaimer-box { background: rgba(255, 183, 77, 0.1); border: 1px solid var(--warning); padding: 18px; border-radius: 20px; text-align: inherit; margin-bottom: 20px; width: 100%; }
+        .btn-group { display: flex; flex-direction: column; gap: 12px; width: 100%; align-items: center; }
+        .main-btn { width: 100%; max-width: 260px; padding: 14px; border-radius: 30px; background: var(--accent); color: #000; font-size: 16px; font-weight: 700; border: none; cursor: pointer; }
+        .secondary-btn { width: 100%; max-width: 260px; padding: 11px; border-radius: 30px; background: transparent; color: var(--accent); font-size: 14px; border: 1.5px solid var(--accent); cursor: pointer; }
+        
+        .disclaimer-box { background: rgba(255, 183, 77, 0.12); border: 1px solid var(--warning); padding: 18px; border-radius: 20px; text-align: inherit; margin-bottom: 20px; width: 100%; }
         .disclaimer-box h3 { color: var(--warning); margin-top: 0; font-size: 18px; margin-bottom: 12px; }
-        .disclaimer-box p { font-size: 13px; line-height: 1.5; margin-bottom: 10px; color: #fff; }
 
         #ui { position: absolute; bottom: 40px; width: 100%; display: none; flex-direction: column; align-items: center; gap: 15px; z-index: 100; padding: 0 10px; }
         .controls-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
         button.tool-btn { padding: 10px 14px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; font-size: 14px; }
         button.active { background: var(--accent); color: #000; }
         button.recording { background: var(--record); color: #fff; animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
         #slider-container { width: 90%; max-width: 320px; background: rgba(0,0,0,0.4); padding: 12px 20px; border-radius: 20px; }
         input[type=range] { width: 100%; accent-color: var(--accent); }
         .watermark { position: absolute; bottom: 10px; font-size: 10px; color: rgba(255,255,255,0.25); z-index: 210; width: 100%; text-align: center; pointer-events: none; }
         
         .modal { display: none; position: fixed; z-index: 300; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
-        .modal-content { background: #1a1e23; padding: 20px; border-radius: 20px; width: 85%; max-width: 380px; text-align: inherit; border: 1px solid var(--accent); }
-        .close-modal { width: 100%; margin-top: 15px; padding: 10px; background: var(--accent); border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        .modal-content { background: #1a1e23; padding: 25px; border-radius: 25px; width: 85%; max-width: 380px; text-align: inherit; border: 1px solid var(--accent); }
     </style>
 </head>
 <body>
@@ -81,8 +88,8 @@
 
     <div id="screen-1" class="screen">
         <div class="content-card">
-            <img src="logo.png" id="app-logo" alt="MirrorFace Logo">
-            <h1 data-i18n="app_title">MirrorFace</h1>
+            <img src="logo.png" id="app-logo" alt="Mirror-Smile Logo">
+            <h1 data-i18n="app_title">Mirror-Smile</h1>
             <div class="sub-title" data-i18n="app_subtitle">פותחה על ידי דקל צידון וישי זבולון</div>
             <div class="btn-group">
                 <button class="main-btn" onclick="showScreen(3)" data-i18n="btn_instructions">להוראות השימוש</button>
@@ -93,9 +100,9 @@
 
     <div id="screen-2" class="screen" style="display:none; opacity:0;">
         <div class="content-card">
-            <h2 data-i18n="about_title">אודות MirrorFace</h2>
+            <h2 data-i18n="about_title">אודות Mirror-Smile</h2>
             <div class="info-text" data-i18n="about_content">
-                <p><strong>MirrorFace</strong> נולדה מתוך עקרון הנוירופלסטיות — יכולתו של המוח להשתנות, להסתגל ולהחלים בעקבות אימון, חזרה ומשוב מתאים.</p>
+                <p><strong>Mirror-Smile</strong> נולדה מתוך עקרון הנוירופלסטיות — יכולתו של המוח להשתנות, להסתגל ולהחלים בעקבות אימון, חזרה ומשוב מתאים.</p>
                 <p>עיקרון זה מתואר בהרחבה בספר „המוח הגמיש” (The Brain That Changes Itself) מאת נורמן דוידג’.</p>
                 <p>האפליקציה מבוססת על עקרונות Mirror Therapy שפותחה על‑ידי הנוירולוג <strong>Vilayanur S. Ramachandran</strong>.</p>
             </div>
@@ -117,9 +124,6 @@
                 <li>שכפל את הצד הבריא וחפש סימטריה נוחה וטבעית</li>
                 <li>תרגל בעזרת שתי הידיים במקביל, בהתאם להנחיות המטפל שלך</li>
             </ul>
-            <div class="info-text instruction-goal" data-i18n="instr_goal">
-                מטרת התרגול היא לאפשר למוח „להשתכנע” שהתנועה אפשרית, בטוחה ותקינה.
-            </div>
             <button class="main-btn" onclick="showScreen(4)" data-i18n="btn_to_disclaimer">המשך לאחריות שימוש</button>
         </div>
     </div>
@@ -157,48 +161,46 @@
             <button onclick="finishSession()" class="tool-btn" style="background: rgba(255,255,255,0.2); border-color: #fff;" data-i18n="btn_finish">סיום ✖</button>
         </div>
     </div>
-    <div class="watermark">© 2026 | MirrorFace | Developed by Dekel Tzidon & Yishay Zvulun</div>
+    <div class="watermark">© 2026 | Mirror-Smile | Developed by Dekel Tzidon & Yishay Zvulun</div>
 
-    <div id="usersModal" class="modal"><div class="modal-content"><h3 data-i18n="modal_users_title">קריאה למשתמשים</h3><p data-i18n="modal_users_body">אנו מזמינים אנשים הסובלים משיתוק עצב הפנים להשתמש ב-MirrorFace. נשמח למשוב.</p><button class="close-modal" onclick="closeModal('usersModal')" data-i18n="btn_close">סגור</button></div></div>
+    <div id="usersModal" class="modal"><div class="modal-content"><h3 data-i18n="modal_users_title">קריאה למשתמשים</h3><p data-i18n="modal_users_body">אנו מזמינים אנשים הסובלים משיתוק עצב הפנים להשתמש ב-Mirror-Smile. נשמח למשוב.</p><button class="close-modal" onclick="closeModal('usersModal')" data-i18n="btn_close">סגור</button></div></div>
     <div id="researchModal" class="modal"><div class="modal-content"><h3 data-i18n="modal_res_title">קריאה לחוקרים</h3><p data-i18n="modal_res_body">חוקרים מוזמנים להשתמש באפליקציה למחקר עם קרדיט מתאים.</p><button class="close-modal" onclick="closeModal('researchModal')" data-i18n="btn_close">סגור</button></div></div>
 
     <script>
         const i18n = {
             he: {
                 dir: 'rtl', lang_btn: 'English',
-                app_title: 'MirrorFace', app_subtitle: 'פותחה על ידי דקל צידון וישי זבולון',
+                app_title: 'Mirror-Smile', app_subtitle: 'פותחה על ידי דקל צידון וישי זבולון',
                 btn_instructions: 'להוראות השימוש', btn_about: 'אודות האפליקציה',
-                about_title: 'אודות MirrorFace',
-                about_content: `<p><strong>MirrorFace</strong> נולדה מתוך עקרון הנוירופלסטיות — יכולתו של המוח להשתנות, להסתגל ולהחלים בעקבות אימון, חזרה ומשוב מתאים.</p><p>עיקרון זה מתואר בהרחבה בספר „המוח הגמיש” (The Brain That Changes Itself) מאת נורמן דוידג’.</p><p>האפליקציה מבוססת על עקרונות Mirror Therapy שפותחה על‑ידי הנוירולוג <strong>Vilayanur S. Ramachandran</strong>.</p>`,
+                about_title: 'אודות Mirror-Smile',
+                about_content: `<p><strong>Mirror-Smile</strong> נולדה מתוך עקרון הנוירופלסטיות — יכולתו של המוח להשתנות, להסתגל ולהחלים בעקבות אימון, חזרה ומשוב מתאים.</p><p>עיקרון זה מתואר בהרחבה בספר „המוח הגמיש” (The Brain That Changes Itself) מאת נורמן דוידג’.</p><p>האפליקציה מבוססת על עקרונות Mirror Therapy שפותחה על‑ידי הנוירולוג <strong>Vilayanur S. Ramachandran</strong>.</p>`,
                 btn_call_users: 'קריאה למשתמשים', btn_call_research: 'קריאה לחוקרים', btn_continue: 'להמשך להוראות',
                 instr_title: 'הוראות שימוש',
                 instr_list: `<li>הצב את המכשיר על חצובה, ישירות מול הפנים — בדומה למראה</li><li>דאג לתאורה אחידה, סביבה שקטה ופרטיות</li><li>מקם את הפנים במרכז המסך, מבט ישר קדימה</li><li>שכפל את הצד הבריא וחפש סימטריה נוחה וטבעית</li><li>תרגל בעזרת שתי הידיים במקביל, בהתאם להנחיות המטפל שלך</li>`,
-                instr_goal: 'מטרת התרגול היא לאפשר למוח „להשתכנע” שהתנועה אפשרית, בטוחה ותקינה.',
                 btn_to_disclaimer: 'המשך לאחריות שימוש',
                 disc_title: 'אחריות המשתמש',
                 disc_content: `<p>אפליקציה זו אינה מכשיר רפואי ואינה מהווה ייעוץ רפואי.</p><p>השימוש נעשה באחריות המשתמש בלבד. אין לשנות טיפול ללא התייעצות עם רופא.</p><p>במקרה של כאב או ספק — יש להפסיק את השימוש ולפנות לאיש מקצוע.</p>`,
                 btn_start: 'הבנתי, בואו נתחיל', ui_manual: 'ידני', ui_auto: 'אוטומטי 🔄',
                 btn_normal: 'רגיל', btn_left: 'שמאל', btn_right: 'ימין', btn_finish: 'סיום ✖',
-                modal_users_title: 'קריאה למשתמשים', modal_users_body: 'אנו מזמינים אנשים הסובלים משיתוק עצב הפנים להשתמש ב-MirrorFace. נשמח למשוב.',
+                modal_users_title: 'קריאה למשתמשים', modal_users_body: 'אנו מזמינים אנשים הסובלים משיתוק עצב הפנים להשתמש ב-Mirror-Smile. נשמח למשוב.',
                 modal_res_title: 'קריאה לחוקרים', modal_res_body: 'חוקרים מוזמנים להשתמש באפליקציה למחקר עם קרדיט מתאים.',
                 btn_close: 'סגור', cam_err: 'שגיאת מצלמה: וודא שאתה בחיבור מאובטח (HTTPS) ונתת הרשאה.'
             },
             en: {
                 dir: 'ltr', lang_btn: 'עברית',
-                app_title: 'MirrorFace', app_subtitle: 'Developed by Dekel Tzidon & Yishay Zvulun',
+                app_title: 'Mirror-Smile', app_subtitle: 'Developed by Dekel Tzidon & Yishay Zvulun',
                 btn_instructions: 'Usage Instructions', btn_about: 'About the App',
-                about_title: 'About MirrorFace',
-                about_content: `<p><strong>MirrorFace</strong> was born from the principle of neuroplasticity — the brain's ability to change, adapt, and heal through training and feedback.</p><p>This principle is described in "The Brain That Changes Itself" by Norman Doidge.</p><p>The app is based on Mirror Therapy principles developed by neurologist <strong>Vilayanur S. Ramachandran</strong>.</p>`,
+                about_title: 'About Mirror-Smile',
+                about_content: `<p><strong>Mirror-Smile</strong> was born from the principle of neuroplasticity — the brain's ability to change, adapt, and heal through training and feedback.</p><p>This principle is described in "The Brain That Changes Itself" by Norman Doidge.</p><p>The app is based on Mirror Therapy principles developed by neurologist <strong>Vilayanur S. Ramachandran</strong>.</p>`,
                 btn_call_users: 'Call for Users', btn_call_research: 'Call for Researchers', btn_continue: 'Continue to Instructions',
                 instr_title: 'Instructions',
                 instr_list: `<li>Place the device on a tripod, directly in front of your face.</li><li>Ensure uniform lighting and a quiet environment.</li><li>Position your face in the center, looking straight ahead.</li><li>Mirror the healthy side and find a comfortable symmetry.</li><li>Practice using both hands simultaneously as guided by your therapist.</li>`,
-                instr_goal: 'The goal is to allow the brain to "be convinced" that movement is possible and safe.',
                 btn_to_disclaimer: 'Continue to Disclaimer',
                 disc_title: 'User Responsibility',
                 disc_content: `<p>This app is not a medical device and does not constitute medical advice.</p><p>Use is at the user\'s sole responsibility. Do not change treatment without consulting a doctor.</p><p>In case of pain or doubt — stop use and consult a professional.</p>`,
                 btn_start: 'I Understand, Let\'s Start', ui_manual: 'Manual', ui_auto: 'Auto 🔄',
                 btn_normal: 'Normal', btn_left: 'Left', btn_right: 'Right', btn_finish: 'Finish ✖',
-                modal_users_title: 'Call for Users', modal_users_body: 'We invite people with facial nerve paralysis to use MirrorFace. We welcome your feedback.',
+                modal_users_title: 'Call for Users', modal_users_body: 'We invite people with facial nerve paralysis to use Mirror-Smile. We welcome your feedback.',
                 modal_res_title: 'Call for Researchers', modal_res_body: 'Researchers are invited to use the app with proper credit.',
                 btn_close: 'Close', cam_err: 'Camera Error: Ensure HTTPS connection and camera permissions.'
             }
@@ -235,7 +237,7 @@
         }
 
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function closeModal(id) { document.getElementById(id).style.none = 'none'; }
 
         async function startCamera() {
             document.getElementById('lang-toggle').style.display = 'none';
@@ -311,14 +313,14 @@
             if(activeBtn) activeBtn.classList.add('active');
             else if(m === 'none') document.getElementById('btnNone').classList.add('active');
         }
-        function takeSnapshot() { const l = document.createElement('a'); l.download = 'MirrorFace_Snap.png'; l.href = canvas.toDataURL(); l.click(); }
+        function takeSnapshot() { const l = document.createElement('a'); l.download = 'Mirror-Smile_Snap.png'; l.href = canvas.toDataURL(); l.click(); }
         function toggleVideoRecording() {
             if (!isRecording) {
                 recordedChunks = [];
                 mediaRecorder = new MediaRecorder(canvas.captureStream(30), { mimeType: 'video/webm' });
                 mediaRecorder.ondataavailable = e => recordedChunks.push(e.data);
                 mediaRecorder.onstop = () => {
-                    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(recordedChunks, { type: 'video/webm' })); a.download = 'MirrorFace_Video.webm'; a.click();
+                    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(recordedChunks, { type: 'video/webm' })); a.download = 'Mirror-Smile_Video.webm'; a.click();
                 };
                 mediaRecorder.start(); document.getElementById('btnRecord').classList.add('recording'); isRecording = true;
             } else {
